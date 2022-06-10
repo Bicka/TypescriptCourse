@@ -31,21 +31,40 @@ function countAndDesc<T extends Lengthy>(element: T): [T, string] {
 
 console.log(countAndDesc("blaa"));
 
-function extractAndConvert<T extends object, U extends keyof T>(obj: T, key: U){
-    return obj[key];
+function extractAndConvert<T extends object, U extends keyof T>(
+  obj: T,
+  key: U
+) {
+  return obj[key];
 }
 
-
 class DataStorage<T> {
-    private data: T[] = [];
+  private data: T[] = [];
 
-    addItem(item : T)
-    {
-        this.data.push(item)
-    }
+  addItem(item: T) {
+    this.data.push(item);
+  }
 
-    removeItem(item : T)
-    {
-        this.data.splice(this.data.indexOf(item),1);
-    }
+  removeItem(item: T) {
+    this.data.splice(this.data.indexOf(item), 1);
+  }
+}
+
+interface CourseGoal {
+  title: string;
+  description: string;
+  completeUntil: Date;
+}
+
+function createCourse(
+  title: string,
+  description: string,
+  completeUntil: Date
+): CourseGoal {
+  let course: Partial<CourseGoal> = {};
+  course.title = title;
+  course.description = description;
+  course.completeUntil = completeUntil;
+
+  return course as CourseGoal;
 }
