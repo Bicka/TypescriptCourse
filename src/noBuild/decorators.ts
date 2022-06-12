@@ -78,7 +78,7 @@ class Product {
 
 const prod = new Product('Test', 153)
 
-function Autobind(_: any, _2: string, descriptor: PropertyDescriptor) {
+function AutobindFunction(_: any, _2: string, descriptor: PropertyDescriptor) {
   const originalMehod = descriptor.value
   const adjDescriptor: PropertyDescriptor = {
     configurable: true,
@@ -109,25 +109,25 @@ interface ValidationConfig {
   }
 }
 
-const registredValidators: ValidationConfig = {}
+const _registredValidators: ValidationConfig = {}
 
 function RequiredValue(target: any, name: string) {
-  registredValidators[target.constructor.name] = {
-    ...registredValidators[target.constructor.name],
-    [name]: [...(registredValidators[target.constructor.name]?.[name] ?? []), 'required'],
+  _registredValidators[target.constructor.name] = {
+    ..._registredValidators[target.constructor.name],
+    [name]: [...(_registredValidators[target.constructor.name]?.[name] ?? []), 'required'],
   }
 }
 
 function PositiveNumber(target: any, name: string) {
-  registredValidators[target.constructor.name] = {
-    ...registredValidators[target.constructor.name],
-    [name]: [...(registredValidators[target.constructor.name]?.[name] ?? []), 'positive'],
+  _registredValidators[target.constructor.name] = {
+    ..._registredValidators[target.constructor.name],
+    [name]: [...(_registredValidators[target.constructor.name]?.[name] ?? []), 'positive'],
 
   }
 }
 
 function validate(obj: any) {
-  const objValidatorConfig = registredValidators[obj.constructor.name]
+  const objValidatorConfig = _registredValidators[obj.constructor.name]
   if (!objValidatorConfig) return true
   let isValid = true
   for (const prop in objValidatorConfig) {
