@@ -1,2 +1,3 @@
 *.js
 node_modules
+react_test/node_modules

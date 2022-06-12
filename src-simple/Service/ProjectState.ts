@@ -1,4 +1,4 @@
-import State from '../Service/State'
+import State from './State'
 import Project, { Status } from '../Class/ProjectModel'
 export class ProjectState extends State<Project> {
   private static thisInstance: ProjectState
